@@ -5,12 +5,14 @@ if __name__ == '__main__':
             break
 
         if d < 1 or d >= n or n > 10 ** 5:
-            raise RuntimeError("Invalid entry, please verify: (1 ≤ D < N ≤ 10^5)")
+            print("Invalid entry, please verify: (1 ≤ D < N ≤ 10^5)")
+            continue
 
         number = input().strip()
 
         if len(number) != n:
-            raise RuntimeError(f"Invalid entry, please verify number length is equals: {n}")
+            print(f"Invalid entry, please verify number length is {n}")
+            continue
 
         stack = []
         for digit in number:
