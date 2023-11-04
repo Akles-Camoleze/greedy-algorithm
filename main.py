@@ -7,22 +7,20 @@ if __name__ == '__main__':
         if d < 1 or d >= n or n > 10 ** 5:
             raise RuntimeError("Invalid entry, please verify: (1 ≤ D < N ≤ 10^5)")
 
-        number = int(input())
-        for i in range(n - 1, 1, -1):
-            if d == 0:
-                break
+        number = input().strip()
 
-            prev_e = 10 ** (i - 1)
-            curr_e = prev_e * 10
-            prev = number // curr_e
-            curr = number // prev_e - prev * 10
+        if len(number) != n:
+            raise RuntimeError(f"Invalid entry, please verify number length is equals: {n}")
 
-            number -= (prev * curr_e)
+        stack = []
+        for digit in number:
+            while d > 0 and stack and stack[-1] < digit:
+                stack.pop()
+                d -= 1
+            stack.append(digit)
 
-            if prev > curr:
-                number -= (curr * prev_e)
-                number += (prev * prev_e)
-
+        while d > 0:
+            stack.pop()
             d -= 1
 
-        print(number)
+        print(''.join(stack))
