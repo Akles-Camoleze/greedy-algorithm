@@ -1,14 +1,15 @@
 if __name__ == '__main__':
     while True:
-        n, rm = map(int, input().split())
-
-        if (n, rm) == (0, 0):
+        n, d = map(int, input().split())
+        if (n, d) == (0, 0):
             break
 
-        number = int(input())
+        if d < 1 or d >= n or n > 10 ** 5:
+            raise RuntimeError("Invalid entry, please verify: (1 ≤ D < N ≤ 10^5)")
 
+        number = int(input())
         for i in range(n - 1, 1, -1):
-            if rm == 0:
+            if d == 0:
                 break
 
             prev_e = 10 ** (i - 1)
@@ -22,6 +23,6 @@ if __name__ == '__main__':
                 number -= (curr * prev_e)
                 number += (prev * prev_e)
 
-            rm -= 1
+            d -= 1
 
         print(number)
